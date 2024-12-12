@@ -12,5 +12,8 @@
   "license": "ISC",
   "devDependencies": {
     "lite-server": "^2.6.1"
+  },
+  "dependencies": {
+    "lit-html": "^3.2.1"
   }
 }
