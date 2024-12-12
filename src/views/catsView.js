@@ -4,6 +4,6 @@ const template = () => html`
     <h1>Cats page</h1>
 `;
 
-export default function(){
-    render(template());
+export default function(ctx){
+    ctx.render(template());
 }
