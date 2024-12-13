@@ -2,7 +2,8 @@
 //import { initializeApp } from "../../node_modules/firebase/firebase-app.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 //import { getAuth } from "../../node_modules/firebase/firebase-auth.js";
-import { getAuth } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js'
+import { getAuth, setPersistence, browserLocalPersistence } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js'
+import page from "../lib/page.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -21,5 +22,17 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
+
+setPersistence(auth, browserLocalPersistence)
+  .then(() => {
+    console.log('persistance');
+
+    // REFRESH CURRENT PAGE WHEN PERSISTENCE IS LOADED, A LITTLE HACK
+    page.redirect(location.pathname);
+  })
+  .catch(err => {
+    console.log('err');
+    
+  })
 
 export default app;
