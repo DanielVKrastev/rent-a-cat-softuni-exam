@@ -22,3 +22,4 @@ Javascript end to end application using following technologies:
  * Mocha for unit testing
  * Playwright for e2e testing
  * Bundling (package names)
+ * Git Source Control with GitHub

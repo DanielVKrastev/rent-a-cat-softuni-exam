@@ -5,13 +5,13 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "lite-server"
+    "dev": "vite"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "lite-server": "^2.6.1"
+    "vite": "^6.0.3"
   },
   "dependencies": {
     "firebase": "^11.1.0",
