@@ -1,6 +1,6 @@
 import { html } from "../lib/lit-html.js";
 //import { signInWithEmailAndPassword } from "../../node_modules/firebase/firebase-auth.js";
-import { signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from "../config/firebaseInit.js";
 import page from "../lib/page.js";
 
