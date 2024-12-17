@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAuth, setPersistence, browserLocalPersistence } from 'firebase/auth';
+import { getDatabase } from 'firebase/database';
 import page from "../lib/page.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -20,6 +21,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
+export const database = getDatabase(app);
 
 setPersistence(auth, browserLocalPersistence)
   .then(() => {
