@@ -3,7 +3,7 @@ import { html, render } from "../lib/lit-html.js";
 const rootEl = document.getElementById('root');
 
 const layoutTemplate = (body, ctx) => html`
-     <div class="h-full bg-white">
+    <div class="h-full bg-white">
         <header class="absolute inset-x-0 top-0 z-50">
             <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div class="flex lg:flex-1">
@@ -93,10 +93,34 @@ const layoutTemplate = (body, ctx) => html`
             ${body}
         </div>
 
-        <footer>
-            All rights reserved &copy; SoftUni
-        </footer>
+        
     </div>
+    <!-- FOOTER -->
+    <footer class="bg-white rounded-lg shadow m-4 light:bg-gray-800">
+    <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+      <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 SoftUni Rent a Cat <a href="https://flowbite.com/" class="">Flowbite™</a>. All Rights Reserved.
+    </span>
+    <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+        <li>
+            <a href="#" class=" me-4 md:me-6">About</a>
+        </li>
+        <li>
+            <a href="#" class=" me-4 md:me-6">Privacy Policy</a>
+        </li>
+        <li>
+            <a href="#" class=" me-4 md:me-6">Licensing</a>
+        </li>
+        <li>
+            <a href="#" class="">Contact</a>
+        </li>
+    </ul>
+    </div>
+</footer>
+
+    
+
+
+
 `;
 
 export default function(ctx, next){
