@@ -9,9 +9,22 @@ async function getAll() {
     const cats = Object.keys(result).map(id => ({id, ...result[id]}));
 
     return cats;
-    
+}
+
+async function create(data) {
+    const response = await fetch(`${url}.json`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+
+    const result = await response.json();
+    return result;
 }
 
 export default{
     getAll,
+    create
 }
