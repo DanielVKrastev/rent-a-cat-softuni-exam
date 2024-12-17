@@ -24,7 +24,16 @@ async function create(data) {
     return result;
 }
 
+async function getOne(catId) {
+    const response = await fetch(`${url}/${catId}.json`);
+    const data = await response.json();
+
+    return data;
+    
+}
+
 export default{
     getAll,
-    create
+    create,
+    getOne
 }
