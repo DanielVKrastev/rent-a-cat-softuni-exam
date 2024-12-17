@@ -7,6 +7,7 @@ import homeView from "./views/homeView.js";
 import loginView from './views/loginView.js';
 import { authMiddleware } from './middlewares/auth.js';
 import logoutView from './views/logoutView.js';
+import registerView from './views/registerView.js';
 
 // Setup layout
 page(authMiddleware);
@@ -16,6 +17,7 @@ page(layoutView);
 page('/', homeView);
 page('/cats', catsView);
 page('/login', loginView);
+page('/register', registerView);
 page('/logout', logoutView);
 
 //Start rounting

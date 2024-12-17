@@ -28,6 +28,7 @@ const layoutTemplate = (body, ctx) => html`
                     <a href="/" class="text-sm/6 font-semibold text-gray-900">Home</a>
                     <a href="/cats" class="text-sm/6 font-semibold text-gray-900">Cats</a>
                     <a href="/login" class="text-sm/6 font-semibold text-gray-900">Login</a>
+                    <a href="/register" class="text-sm/6 font-semibold text-gray-900">Register</a>
                 </div>
 
                 ${
