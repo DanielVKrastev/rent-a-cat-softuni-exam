@@ -2,25 +2,22 @@ import { html, render } from "../lib/lit-html.js";
 
 const rootEl = document.getElementById('root');
 
-const layoutTemplate = (body, ctx) => html`
+const layoutTemplate = (body, closeMobileNav, openMenu, ctx) => html`
     <div class="h-full bg-white">
         <header class="absolute inset-x-0 top-0 z-50">
             <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div class="flex lg:flex-1">
-                    <a href="#" class="-m-1.5 p-1.5">
+                    <a href="/" class="-m-1.5 p-1.5">
                         <span class="sr-only">Rent a Cat</span>
                         <img class="h-8 w-auto"
                             src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt="">
                     </a>
                 </div>
-                <div class="flex lg:hidden">
-                    <button type="button"
-                        class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+                <div class="lg:hidden" role="dialog" aria-modal="true">
+                    <button @click=${openMenu} data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:block hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
-                        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="curren tColor"
-                            aria-hidden="true" data-slot="icon">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
                         </svg>
                     </button>
                 </div>
@@ -55,20 +52,21 @@ const layoutTemplate = (body, ctx) => html`
                     `
                 }
                 
+                
             </nav>
             <!-- Mobile menu, show/hide based on menu open state. -->
-            <div class="lg:hidden" role="dialog" aria-modal="true">
+            <div class="lg:hidden invisible" role="dialog" aria-modal="true" id="mobile-nav">
                 <!-- Background backdrop, show/hide based on slide-over state. -->
                 <div class="fixed inset-0 z-50"></div>
                 <div
                     class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                     <div class="flex items-center justify-between">
-                        <a href="#" class="-m-1.5 p-1.5">
+                        <a href="/" class="-m-1.5 p-1.5">
                             <span class="sr-only">Your Company</span>
                             <img class="h-8 w-auto"
                                 src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt="">
                         </a>
-                        <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
+                        <button @click=${closeMobileNav} type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
                             <span class="sr-only">Close menu</span>
                             <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                 aria-hidden="true" data-slot="icon">
@@ -79,20 +77,29 @@ const layoutTemplate = (body, ctx) => html`
                     <div class="mt-6 flow-root">
                         <div class="-my-6 divide-y divide-gray-500/10">
                             <div class="space-y-2 py-6">
-                                <a href="#"
-                                    class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a>
-                                <a href="#"
-                                    class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Features</a>
-                                <a href="#"
-                                    class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Marketplace</a>
-                                <a href="#"
-                                    class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Company</a>
-                            </div>
-                            <div class="py-6">
-                                <a href="#"
-                                    class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Log
+                                <a href="/"
+                                    class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" @click=${closeMobileNav}>Home</a>
+                                <a href="/cats"
+                                    class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" @click=${closeMobileNav}>Cats</a>
+                            ${ctx.isAuthenticated
+                                ? html`
+                                <a href="/cats/create"
+                                    class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" @click=${closeMobileNav}>Create</a>
+                                <a href="/logout"
+                                    class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" @click=${closeMobileNav}>Logout</a>
+                                    </div>
+                                    `
+                                : html`
+                                 <div class="py-6">
+                                <a href="/login"
+                                    class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" @click=${closeMobileNav}>Log
                                     in</a>
+                                <a href="/register"
+                                    class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" @click=${closeMobileNav}>Register</a>
                             </div>
+                    `
+                }
+
                         </div>
                     </div>
                 </div>
@@ -127,10 +134,6 @@ const layoutTemplate = (body, ctx) => html`
     </div>
 </footer>
 
-    
-
-
-
 `;
 
 export default function(ctx, next){
@@ -140,8 +143,18 @@ export default function(ctx, next){
     
 
     ctx.render = (templateResult) => {
-        render(layoutTemplate(templateResult, ctx), rootEl);
+        render(layoutTemplate(templateResult, clickHandlerCloseMobileNav, clickHandlerOpenMobileNav, ctx), rootEl);
     };
 
     next();
+}
+
+function clickHandlerCloseMobileNav(){
+    const mobileNav = document.getElementById('mobile-nav');
+    mobileNav.className = 'invisible';
+}
+
+function clickHandlerOpenMobileNav(){
+    const mobileNav = document.getElementById('mobile-nav');
+    mobileNav.className = 'visible';
 }
