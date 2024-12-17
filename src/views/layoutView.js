@@ -27,8 +27,18 @@ const layoutTemplate = (body, ctx) => html`
                 <div class="hidden lg:flex lg:gap-x-12">
                     <a href="/" class="text-sm/6 font-semibold text-gray-900">Home</a>
                     <a href="/cats" class="text-sm/6 font-semibold text-gray-900">Cats</a>
-                    <a href="/login" class="text-sm/6 font-semibold text-gray-900">Login</a>
-                    <a href="/register" class="text-sm/6 font-semibold text-gray-900">Register</a>
+                    ${ctx.isAuthenticated
+                        ? html`
+                            <a href="/cats/create" class="text-sm/6 font-semibold text-gray-900">Create</a>
+                            <a href="/logout" class="text-sm/6 font-semibold text-gray-900">Logout</a>
+                        `
+                        :
+                        html`
+                            <a href="/login" class="text-sm/6 font-semibold text-gray-900">Login</a>
+                            <a href="/register" class="text-sm/6 font-semibold text-gray-900">Register</a>
+                        `
+                    }
+                   
                 </div>
 
                 ${
