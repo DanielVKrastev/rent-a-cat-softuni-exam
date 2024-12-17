@@ -18,8 +18,8 @@ Javascript end to end application using following technologies:
  * Firebase for hosting
  * Tailwing CSS with UI componets
  * Page.js for routing
- * Lit-html for templating
+ * Vite for templating
  * Mocha for unit testing
  * Playwright for e2e testing
- * Bundling (package names)
+ * Vite Bundling (package names)
  * Git Source Control with GitHub
