@@ -119,17 +119,28 @@ const layoutTemplate = (body, closeMobileNav, openMenu, ctx) => html`
     </span>
     <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
         <li>
-            <a href="#" class=" me-4 md:me-6">About</a>
+            <a href="/" class=" me-4 md:me-6">Home</a>
         </li>
         <li>
-            <a href="#" class=" me-4 md:me-6">Privacy Policy</a>
+            <a href="/cats" class=" me-4 md:me-6">Cats</a>
         </li>
-        <li>
-            <a href="#" class=" me-4 md:me-6">Licensing</a>
-        </li>
-        <li>
-            <a href="#" class="">Contact</a>
-        </li>
+
+        ${ctx.isAuthenticated
+                                ? html`
+            <li>
+                <a href="/cats/create" class=" me-4 md:me-6">Add Cat</a>
+            </li>
+                                `
+                                : html`
+             <li>
+                <a href="/login" class=" me-4 md:me-6">Login</a>
+            </li>
+            <li>
+                <a href="/register" class=" me-4 md:me-6">Register</a>
+            </li>                   
+                                `
+        }
+        
     </ul>
     </div>
 </footer>
